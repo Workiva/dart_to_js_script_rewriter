@@ -2,7 +2,8 @@ library dart_to_js_script_rewriter;
 
 import 'package:html5lib/parser.dart' show parse;
 import 'package:html5lib/dom.dart' show Document;
-import 'package:barback/barback.dart' show Asset, Transform, Transformer;
+import 'package:barback/barback.dart'
+  show Asset, Transform, Transformer, BarbackSettings, BarbackMode;
 import 'dart:async' show Future;
 
 /// Finds script tags with type equals application/dart
@@ -10,11 +11,16 @@ import 'dart:async' show Future;
 /// This eliminates a 404 get on the .dart file and
 /// speeds up initial loads. Win!
 class DartToJsScriptRewriter extends Transformer {
-  DartToJsScriptRewriter.asPlugin();
+  bool releaseMode = false;
+  
+  DartToJsScriptRewriter.asPlugin(BarbackSettings settings)
+      : releaseMode = (settings.mode == BarbackMode.RELEASE);
   
   String get allowedExtensions => ".html";
   
   Future apply(Transform transform) {
+    if (!releaseMode) return new Future.value(true);
+    
     var id = transform.primaryInput.id;
     return transform.primaryInput.readAsString().then((content) {
       var document = parse(content);
