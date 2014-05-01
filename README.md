@@ -47,6 +47,18 @@ runs in _release_mode.
 
 See the [pub docs][pubdocs] for more on modes.
 
+## In a world with Dart VM in browsers, don't I need dart.js?
+
+Right now, `pub build` does not build a production release of your app
+that includes Dart code. Mainly, this is because the `dart2dart` program
+is still in development. Also, no browsers have the Dart VM.
+
+Probably the ultimate answer for Dart apps that run as both Dart and
+JavaScript and load fast is to use the server to check the browser and respond
+with the correct file. But I'll worry about that when Dart VM in browsers
+is closer, and `pub build` supports building Dart source to something
+deployable.
+
 ## Reporting issues
 
 Please use the [issue tracker][issues].
