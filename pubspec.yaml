@@ -1,0 +1,13 @@
+name: dart_to_js_script_rewriter
+description: Replaces Dart script tags with JavaScript script tags,
+             speeding up initial loads and reducing 404s. Use when
+             ready to deploy.
+version: 0.0.1
+homepage: foo
+dependencies:
+  barback: any
+  html5lib: any
+dev_dependencies:
+  browser: any
+transformers:
+- dart_to_js_script_rewriter
