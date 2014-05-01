@@ -5,6 +5,26 @@ JavaScript script tags, eliminating
 404s and speeding up initial loads.
 Useful when building for deployment.
 
+## Why? Load your app quicker!
+
+A traditional Dart application is deployed with HTML that looks something
+like this:
+
+    <script async type="application/dart" src="test.dart"></script>
+    <script async src="packages/browser/dart.js"></script>
+    
+This is a performance problem for initial startup, because:
+
+* Some browsers will attempt to download test.dart, but that file is not
+  deployed. This causes unnecessary server strain and noisy 404s.
+* The browser needs to run dart.js to replace a script tag in the DOM,
+  so that the actual JavaScript version of the app can be downloaded. This is
+  an unnecessary delay, since today no production browser includes Dart VM
+  and thus only the JavaScript version is required.
+  
+With this transformer, you can address the above issues, speed up the load
+time of your apps, and make happier users.
+
 ## Configuring
 
 Add the transformer to your pubspec.yaml:
