@@ -12,10 +12,12 @@ import 'dart:async' show Future;
 /// speeds up initial loads. Win!
 class DartToJsScriptRewriter extends Transformer {
   bool releaseMode = false;
+  bool csp;
   
   DartToJsScriptRewriter.asPlugin(BarbackSettings settings)
-      : releaseMode = (settings.mode == BarbackMode.RELEASE);
-  
+      : releaseMode = (settings.mode == BarbackMode.RELEASE),
+        csp = (settings.configuration["csp"] == true);
+
   String get allowedExtensions => ".html";
   
   Future apply(Transform transform) {
@@ -47,7 +49,7 @@ class DartToJsScriptRewriter extends Transformer {
              tag.attributes['src'] != null;
     }).forEach((tag) {
       var src = tag.attributes['src'];
-      tag.attributes['src'] = '$src.js';
+      tag.attributes['src'] = src + (csp ? '.precompiled.js' : '.js');
       tag.attributes.remove('type');
     });
   }
