@@ -1,6 +1,10 @@
+# 0.0.2
+
+* CSP support (thanks to claudiodangelis)
+
 # 0.0.1+3
 
-* Bump dependency versions
+* Bump dependency versions (thanks to kaendfinger)
 
 # 0.0.1+2
 
