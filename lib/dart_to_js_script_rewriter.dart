@@ -12,7 +12,7 @@ import 'dart:async' show Future;
 /// speeds up initial loads. Win!
 class DartToJsScriptRewriter extends Transformer {
   bool releaseMode = false;
-  bool csp;
+  bool csp = false;
   
   DartToJsScriptRewriter.asPlugin(BarbackSettings settings)
       : releaseMode = (settings.mode == BarbackMode.RELEASE),

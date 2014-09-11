@@ -3,7 +3,7 @@ description: Replaces Dart script tags with JavaScript script tags,
              speeding up initial loads and reducing 404s. Use when
              ready to deploy.
 author: Seth Ladd <sethladd@gmail.com>
-version: 0.0.1+3
+version: 0.0.2
 homepage: https://github.com/sethladd/dart_to_js_script_rewriter
 dependencies:
   barback: ">=0.15.0 <0.16.0"
