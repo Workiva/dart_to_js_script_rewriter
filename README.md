@@ -12,7 +12,7 @@ like this:
 
     <script async type="application/dart" src="test.dart"></script>
     <script async src="packages/browser/dart.js"></script>
-    
+
 This is a performance problem for initial startup, because:
 
 * Some browsers will attempt to download test.dart, but that file is not
@@ -21,7 +21,7 @@ This is a performance problem for initial startup, because:
   so that the actual JavaScript version of the app can be downloaded. This is
   an unnecessary delay, since today no production browser includes Dart VM
   and thus only the JavaScript version is required.
-  
+
 With this transformer, you can address the above issues, speed up the load
 time of your apps, and make happier users.
 
@@ -31,7 +31,7 @@ Add the transformer to your pubspec.yaml:
 
     transformers:
     - dart_to_js_script_rewriter
-    
+
 (Assuming you already added this package to your pubspec.yaml file.)
 
 ## How it works
@@ -63,7 +63,7 @@ JavaScript:
 Your HTML will then include this script tag:
 
     <script async src="test.dart.precompiled.js"></script>
-    
+
 ## Pub, modes, and this transformer
 
 **This transformer only runs when pub is running in release mode.**
