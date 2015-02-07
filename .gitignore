@@ -1,3 +1,6 @@
 .DS_Store
-packages
+.pub/
+.settings/
 build
+packages
+pubspec.lock

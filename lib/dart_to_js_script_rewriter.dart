@@ -1,10 +1,11 @@
 library dart_to_js_script_rewriter;
 
-import 'package:html5lib/parser.dart' show parse;
-import 'package:html5lib/dom.dart' show Document;
-import 'package:barback/barback.dart'
-  show Asset, Transform, Transformer, BarbackSettings, BarbackMode;
 import 'dart:async' show Future;
+
+import 'package:barback/barback.dart'
+    show Asset, Transform, Transformer, BarbackSettings, BarbackMode;
+import 'package:html5lib/dom.dart' show Document;
+import 'package:html5lib/parser.dart' show parse;
 
 /// Finds script tags with type equals application/dart
 /// and rewrites them to point to the JS version.
@@ -13,23 +14,23 @@ import 'dart:async' show Future;
 class DartToJsScriptRewriter extends Transformer {
   bool releaseMode = false;
   bool csp = false;
-  
+
   DartToJsScriptRewriter.asPlugin(BarbackSettings settings)
       : releaseMode = (settings.mode == BarbackMode.RELEASE),
         csp = (settings.configuration["csp"] == true);
 
   String get allowedExtensions => ".html";
-  
+
   Future apply(Transform transform) {
     if (!releaseMode) return new Future.value(true);
-    
+
     var id = transform.primaryInput.id;
     return transform.primaryInput.readAsString().then((content) {
       var document = parse(content);
 
       removeDartDotJsTags(document);
       rewriteDartTags(document);
-      
+
       return document;
     }).then((document) {
       return transform.addOutput(new Asset.fromString(id, document.outerHtml));
