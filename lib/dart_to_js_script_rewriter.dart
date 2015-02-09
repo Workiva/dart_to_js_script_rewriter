@@ -7,17 +7,14 @@ import 'package:barback/barback.dart'
 import 'package:html5lib/dom.dart' show Document;
 import 'package:html5lib/parser.dart' show parse;
 
-/// Finds script tags with type equals application/dart
-/// and rewrites them to point to the JS version.
-/// This eliminates a 404 get on the .dart file and
+/// Finds script tags with type equals `application/dart` and rewrites them to
+/// point to the JS version. This eliminates a 404 get on the .dart file and
 /// speeds up initial loads. Win!
 class DartToJsScriptRewriter extends Transformer {
   bool releaseMode = false;
-  bool csp = false;
 
   DartToJsScriptRewriter.asPlugin(BarbackSettings settings)
-      : releaseMode = (settings.mode == BarbackMode.RELEASE),
-        csp = (settings.configuration["csp"] == true);
+      : releaseMode = (settings.mode == BarbackMode.RELEASE);
 
   String get allowedExtensions => ".html";
 
@@ -50,7 +47,7 @@ class DartToJsScriptRewriter extends Transformer {
              tag.attributes['src'] != null;
     }).forEach((tag) {
       var src = tag.attributes['src'];
-      tag.attributes['src'] = src + (csp ? '.precompiled.js' : '.js');
+      tag.attributes['src'] = '${src}.js';
       tag.attributes.remove('type');
     });
   }
