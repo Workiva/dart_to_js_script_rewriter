@@ -50,20 +50,6 @@ is turned into this code:
 
     <script async src="test.dart.js"></script>
 
-## CSP support
-
-Content Security Policy (CSP) helps you create more secure client-side
-apps. You can configure this transformer to use dart2js's CSP compliant
-JavaScript:
-
-    transformers:
-    - dart_to_js_script_rewriter:
-        csp: true
-
-Your HTML will then include this script tag:
-
-    <script async src="test.dart.precompiled.js"></script>
-
 ## Pub, modes, and this transformer
 
 **This transformer only runs when pub is running in release mode.**
