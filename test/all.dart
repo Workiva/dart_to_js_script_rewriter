@@ -13,7 +13,7 @@ void defineTests() {
       DartToJsScriptRewriter transformer = _transformer();
       Document document = new Document.html(_html);
       transformer.removeDartDotJsTags(document);
-      List dartJsScripts = document.querySelectorAll('script').where((tag) {
+      var dartJsScripts = document.querySelectorAll('script').where((tag) {
         Map attrs = tag.attributes;
         return attrs['src'] != null && attrs['src'].endsWith('/dart.js');
       });
@@ -24,7 +24,7 @@ void defineTests() {
       DartToJsScriptRewriter transformer = _transformer();
       Document document = new Document.html(_html);
       transformer.rewriteDartTags(document);
-      List dartJsScripts = document.querySelectorAll('script').where((tag) {
+      var dartJsScripts = document.querySelectorAll('script').where((tag) {
         Map attrs = tag.attributes;
         return attrs['type'] == 'application/dart' && attrs['src'] != null;
       });
