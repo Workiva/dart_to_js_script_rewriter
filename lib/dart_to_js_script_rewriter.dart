@@ -4,8 +4,8 @@ import 'dart:async' show Future;
 
 import 'package:barback/barback.dart'
     show Asset, Transform, Transformer, BarbackSettings, BarbackMode;
-import 'package:html5lib/dom.dart' show Document;
-import 'package:html5lib/parser.dart' show parse;
+import 'package:html/dom.dart' show Document;
+import 'package:html/parser.dart' show parse;
 
 /// Finds script tags with type equals `application/dart` and rewrites them to
 /// point to the JS version. This eliminates a 404 get on the .dart file and
@@ -37,14 +37,14 @@ class DartToJsScriptRewriter extends Transformer {
   void removeDartDotJsTags(Document document) {
     document.querySelectorAll('script').where((tag) {
       return tag.attributes['src'] != null &&
-             tag.attributes['src'].endsWith('dart.js');
+          tag.attributes['src'].endsWith('dart.js');
     }).forEach((tag) => tag.remove());
   }
 
   void rewriteDartTags(Document document) {
     document.querySelectorAll('script').where((tag) {
       return tag.attributes['type'] == 'application/dart' &&
-             tag.attributes['src'] != null;
+          tag.attributes['src'] != null;
     }).forEach((tag) {
       var src = tag.attributes['src'];
       tag.attributes['src'] = '${src}.js';

@@ -7,9 +7,9 @@ version: 0.1.0+2
 homepage: https://github.com/sethladd/dart_to_js_script_rewriter
 dependencies:
   barback: ">=0.15.0 <0.16.0"
-  html5lib: ">=0.12.0 <0.13.0"
+  html: ">=0.12.0 <0.13.0"
 dev_dependencies:
   browser: any
-  unittest: any
+  test: any
 transformers:
 - dart_to_js_script_rewriter
