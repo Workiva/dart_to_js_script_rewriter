@@ -1,10 +1,9 @@
-
 library dart_to_js_script_rewriter_test;
 
 import 'package:barback/barback.dart' show BarbackMode, BarbackSettings;
 import 'package:dart_to_js_script_rewriter/dart_to_js_script_rewriter.dart';
-import 'package:html5lib/dom.dart' show Document;
-import 'package:unittest/unittest.dart';
+import 'package:html/dom.dart' show Document;
+import 'package:test/test.dart';
 
 void main() => defineTests();
 
@@ -35,8 +34,8 @@ void defineTests() {
 }
 
 DartToJsScriptRewriter _transformer() {
-    return new DartToJsScriptRewriter.asPlugin(
-        new BarbackSettings({}, BarbackMode.RELEASE));
+  return new DartToJsScriptRewriter.asPlugin(
+      new BarbackSettings({}, BarbackMode.RELEASE));
 }
 
 final String _html = """
