@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.0+3
+
+* Update dependencies
+
 ## 0.1.0+2
 
 * Removed special handling of the csp mode - dart2js no longer uses a special
