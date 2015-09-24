@@ -37,7 +37,7 @@ class DartToJsScriptRewriter extends Transformer {
   void removeDartDotJsTags(Document document) {
     document.querySelectorAll('script').where((tag) {
       return tag.attributes['src'] != null &&
-          tag.attributes['src'].endsWith('dart.js');
+          tag.attributes['src'].endsWith('browser/dart.js');
     }).forEach((tag) => tag.remove());
   }
 
