@@ -12,4 +12,6 @@ dev_dependencies:
   browser: any
   test: any
 transformers:
-- dart_to_js_script_rewriter
+- dart_to_js_script_rewriter:
+    bust_cache: true
+    bust_cache_key: "dartcache"
