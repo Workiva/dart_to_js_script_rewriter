@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.0+4
+
+* [fix] only rewrite dart.js from browser package
+
 ## 0.1.0+3
 
 * Update dependencies
