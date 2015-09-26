@@ -12,9 +12,16 @@ import 'package:html/parser.dart' show parse;
 /// speeds up initial loads. Win!
 class DartToJsScriptRewriter extends Transformer {
   bool releaseMode = false;
+  bool cacheBust = false;
+  String cacheBustKey = "dartcachebust";
 
-  DartToJsScriptRewriter.asPlugin(BarbackSettings settings)
-      : releaseMode = (settings.mode == BarbackMode.RELEASE);
+  DartToJsScriptRewriter.asPlugin(BarbackSettings settings){
+    releaseMode = (settings.mode == BarbackMode.RELEASE);
+    cacheBust = (settings.configuration.containsKey("bust_cache") && settings.configuration["bust_cache"] == true);
+    if(settings.configuration.containsKey("bust_cache_key")){
+      cacheBustKey = settings.configuration["bust_cache_key"];
+    }
+  }
 
   String get allowedExtensions => ".html";
 
@@ -48,16 +55,26 @@ class DartToJsScriptRewriter extends Transformer {
     }).forEach((tag) {
       var src = tag.attributes['src'];
       var query = "";
+      var cacheBustString = "${new DateTime.now().millisecondsSinceEpoch.toString()}";
       if(src.contains("?")){
         var spliturl = src.split("?");
         src = spliturl[0];
         query = spliturl[1];
       }
+
       if(query.length > 0){
-        tag.attributes['src'] = '${src}.js?${query}';
+        src = '${src}.js?${query}';
+        if(cacheBust){
+          src = "${src}&${cacheBustKey}=${cacheBustString}";
+        }
       }else{
-        tag.attributes['src'] = '${src}.js';
+        src = '${src}.js';
+        if(cacheBust){
+          src = "${src}?${cacheBustKey}=${cacheBustString}";
+        }
       }
+
+      tag.attributes['src'] = src;
       tag.attributes.remove('type');
     });
   }
