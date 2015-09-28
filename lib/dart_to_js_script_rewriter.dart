@@ -47,7 +47,8 @@ class DartToJsScriptRewriter extends Transformer {
           tag.attributes['src'] != null;
     }).forEach((tag) {
       var src = tag.attributes['src'];
-      tag.attributes['src'] = '${src}.js';
+      tag.attributes['src'] = src.replaceFirstMapped(
+          new RegExp(r'\.dart($|[\?#])'), (match) => '.dart.js${match[1]}');
       tag.attributes.remove('type');
     });
   }
