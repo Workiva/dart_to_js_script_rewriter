@@ -5,6 +5,8 @@ JavaScript script tags, eliminating
 404s and speeding up initial loads.
 Useful when building for deployment.
 
+<a href="https://pub.dartlang.org/packages/dart_to_js_script_rewriter"><img src="https://img.shields.io/pub/v/dart_to_js_script_rewriter.svg" alt="Pub Package Manager - Dart" /></a>
+
 ## Why? Load your app quicker!
 
 A traditional Dart application is deployed with HTML that looks something
