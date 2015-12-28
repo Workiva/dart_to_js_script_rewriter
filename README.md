@@ -38,7 +38,7 @@ Add the transformer to your pubspec.yaml:
 
 **When run in "release" mode**, this transformer does two things:
 
-* Removes script tags that point to `dart.js`.
+* Removes script tags that point to `browser/dart.js`.
 * Rewrites a Dart script tag to a JavaScript script tag.
 
 For example, this code:
