@@ -1,8 +1,9 @@
 # dart_to_js_script_rewriter
 
-[![Pub](https://img.shields.io/pub/v/dart_to_js_script_rewriter.svg)](https://pub.dartlang.org/packages/dart_to_js_script_rewriter)
-[![Build Status](https://travis-ci.org/Workiva/dart_to_js_script_rewriter.svg?branch=travis-ci)](https://travis-ci.org/Workiva/dart_to_js_script_rewriter)
-[![codecov.io](http://codecov.io/github/Workiva/dart_to_js_script_rewriter/coverage.svg?branch=master)](http://codecov.io/github/Workiva/dart_to_js_script_rewriter?branch=master)
+<a href="https://pub.dartlang.org/packages/dart_to_js_script_rewriter"><img src="https://img.shields.io/pub/v/dart_to_js_script_rewriter.svg" alt="Pub" /></a>
+<a href="https://travis-ci.org/Workiva/dart_to_js_script_rewriter"><img src="https://travis-ci.org/Workiva/dart_to_js_script_rewriter.svg?branch=travis-ci" alt="Build Status" /></a>
+<a href="http://codecov.io/github/Workiva/dart_to_js_script_rewriter?branch=master"><img src="http://codecov.io/github/Workiva/dart_to_js_script_rewriter/coverage.svg?branch=master" alt="codecov.io" /></a>
+
 
 A pub transformer that rewrites Dart script tags to
 JavaScript script tags, eliminating
@@ -75,7 +76,7 @@ See the [pub docs][pubdocs] for more on modes.
 
 Please use the [issue tracker][issues].
 
-[issues]: https://github.com/workiva/dart_to_js_script_rewriter/issues
+[issues]: https://github.com/Workiva/dart_to_js_script_rewriter/issues
 [pubdocs]: https://www.dartlang.org/tools/pub/
 
 Thanks to Seth Ladd, <sethladd@gmail.com>, for creating the original version of this [library](https://github.com/sethladd/dart_to_js_script_rewriter).
