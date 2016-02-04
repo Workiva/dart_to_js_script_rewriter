@@ -1,11 +1,68 @@
-import 'package:test/test.dart';
-import 'package:html/dom.dart';
-import 'package:dart_to_js_script_rewriter/dart_to_js_script_rewriter.dart';
+@TestOn('vm')
+library dart_to_js_script_rewriter.test.unit_test;
+
+import 'dart:io';
+
 import 'package:barback/barback.dart';
+import 'package:html/dom.dart';
+import 'package:mockito/mockito.dart';
+import 'package:test/test.dart';
+
+import 'package:dart_to_js_script_rewriter/dart_to_js_script_rewriter.dart';
+
+import 'transformer_mocks.dart';
 
 main() {
   final transformer = new DartToJsScriptRewriter.asPlugin(
       new BarbackSettings({}, BarbackMode.RELEASE));
+
+  group('apply()', () {
+    test('when run in release mode', () async {
+      AssetId fakeInputFileAssetId =
+      new AssetId('testid', 'test/test_data/test_file.html');
+
+      MockAsset inputFile;
+      MockTransform mockTransform;
+
+      String transformedFile;
+
+      inputFile = new MockAsset();
+      mockTransform = new MockTransform();
+
+      when(inputFile.id).thenReturn(fakeInputFileAssetId);
+      when(inputFile.readAsString()).thenReturn(
+          new File.fromUri(Uri.parse('test/test_data/test_file.html'))
+              .readAsString());
+
+      when(mockTransform.primaryInput).thenReturn(inputFile);
+      when(mockTransform.readInputAsString(fakeInputFileAssetId))
+          .thenAnswer((_) {
+        return new File.fromUri(Uri.parse('test/test_data/test_file.html'))
+            .readAsString();
+      });
+
+      await transformer.apply(mockTransform);
+
+      Asset fileAsset =
+          verify(mockTransform.addOutput(captureAny))
+              .captured
+              .first;
+
+      transformedFile = await fileAsset.readAsString();
+      expect(
+          transformedFile.contains(
+              '<script async type="application/dart" src="test.dart"></script>'),
+          isFalse);
+      expect(
+          transformedFile.contains(
+              '<script async src="packages/browser/dart.js"></script>'),
+          isFalse);
+      expect(
+          transformedFile
+              .contains('<script async="" src="test.dart.js"></script>'),
+          isTrue);
+    });
+  });
 
   group('rewriteDartScriptTag', () {
     testScriptShouldBeRewritten(String script, bool shouldRewrite) {
