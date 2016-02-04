@@ -2,6 +2,7 @@
 .pub/
 .settings/
 build
+coverage/
 packages
 pubspec.lock
 .packages
