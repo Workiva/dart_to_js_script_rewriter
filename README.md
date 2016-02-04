@@ -1,5 +1,10 @@
 # dart_to_js_script_rewriter
 
+<a href="https://pub.dartlang.org/packages/dart_to_js_script_rewriter"><img src="https://img.shields.io/pub/v/dart_to_js_script_rewriter.svg" alt="Pub" /></a>
+<a href="https://travis-ci.org/Workiva/dart_to_js_script_rewriter"><img src="https://travis-ci.org/Workiva/dart_to_js_script_rewriter.svg?branch=travis-ci" alt="Build Status" /></a>
+<a href="http://codecov.io/github/Workiva/dart_to_js_script_rewriter?branch=master"><img src="http://codecov.io/github/Workiva/dart_to_js_script_rewriter/coverage.svg?branch=master" alt="codecov.io" /></a>
+
+
 A pub transformer that rewrites Dart script tags to
 JavaScript script tags, eliminating
 404s and speeding up initial loads.
@@ -71,5 +76,7 @@ See the [pub docs][pubdocs] for more on modes.
 
 Please use the [issue tracker][issues].
 
-[issues]: https://github.com/sethladd/dart_to_js_script_rewriter/issues
+[issues]: https://github.com/Workiva/dart_to_js_script_rewriter/issues
 [pubdocs]: https://www.dartlang.org/tools/pub/
+
+Thanks to Seth Ladd, <sethladd@gmail.com>, for creating the original version of this [library](https://github.com/sethladd/dart_to_js_script_rewriter).
