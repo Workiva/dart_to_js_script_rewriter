@@ -12,17 +12,20 @@ author:
   - Trent Grover <trent.grover@workiva.com>
 version: 0.1.0+4
 homepage: https://github.com/Workiva/dart_to_js_script_rewriter
+environment:
+  sdk: ">=1.12.0 <2.0.0"
 dependencies:
-  barback: ">=0.15.0 <0.16.0"
-  html: ">=0.12.0 <0.13.0"
+  barback: "^0.15.2+7"
+  html: "^0.12.2+1"
 dev_dependencies:
-  browser: any
+  browser: "^0.10.0+2"
   coverage: "^0.7.2"
+  dart_dev: "^1.0.6"
   dart_style: ">=0.1.8 <0.3.0"
   dartdoc: "^0.4.0"
-  dart_dev: "^1.0.6"
+  grinder: "^0.8.0+1"
   mockito: any
-  test: any
+  test: "^0.12.6+2"
 transformers:
 - dart_to_js_script_rewriter
 - test/pub_serve:
