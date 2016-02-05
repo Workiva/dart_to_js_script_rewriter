@@ -19,7 +19,7 @@ main() {
   group('apply()', () {
     test('when run in release mode', () async {
       AssetId fakeInputFileAssetId =
-      new AssetId('testid', 'test/test_data/test_file.html');
+          new AssetId('testid', 'test/test_data/test_file.html');
 
       MockAsset inputFile;
       MockTransform mockTransform;
@@ -44,9 +44,7 @@ main() {
       await transformer.apply(mockTransform);
 
       Asset fileAsset =
-          verify(mockTransform.addOutput(captureAny))
-              .captured
-              .first;
+          verify(mockTransform.addOutput(captureAny)).captured.first;
 
       transformedFile = await fileAsset.readAsString();
       expect(
