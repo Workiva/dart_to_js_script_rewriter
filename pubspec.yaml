@@ -10,7 +10,7 @@ authors:
   - Jay Udey <jay.udey@workiva.com>
   - Max Peterson <maxwell.peterson@workiva.com>
   - Trent Grover <trent.grover@workiva.com>
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/Workiva/dart_to_js_script_rewriter
 environment:
   sdk: ">=1.12.0 <2.0.0"
