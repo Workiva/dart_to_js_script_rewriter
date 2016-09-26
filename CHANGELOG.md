@@ -1,4 +1,6 @@
-# CHANGELOG
+## 1.0.2
+
+* Updated dependencies on `html` and `dartdoc`.
 
 ## 0.1.0+4
 
