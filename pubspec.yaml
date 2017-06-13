@@ -13,16 +13,16 @@ authors:
 version: 1.0.2
 homepage: https://github.com/Workiva/dart_to_js_script_rewriter
 environment:
-  sdk: ">=1.12.0 <2.0.0"
+  sdk: ^1.23.0
 dependencies:
   barback: "^0.15.2+7"
   html: ">=0.12.2+1 <0.14.0"
 dev_dependencies:
   browser: "^0.10.0+2"
   coverage: "^0.7.2"
-  dart_dev: "^1.0.6"
-  dart_style: ">=0.1.8 <0.3.0"
-  dartdoc: ">=0.4.0 <0.10.0"
+  dart_dev: "^1.7.6"
+  dart_style: ">=1.0.6 <2.0.0"
+  dartdoc: ">=0.12.0 <1.0.0"
   grinder: "^0.8.0+1"
   mockito: any
   test: "^0.12.6+2"
