@@ -6,6 +6,7 @@ main(List<String> args) async {
   List<String> directories = ['example/', 'lib/', 'test/', 'tool/'];
 
   config.analyze.entryPoints = directories;
+  config.analyze.strong = true;
   config.format.directories = directories;
   config.test
     ..platforms = ['vm']
