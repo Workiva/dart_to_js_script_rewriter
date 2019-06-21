@@ -15,7 +15,8 @@ class DartToJsScriptRewriter extends Transformer {
   DartToJsScriptRewriter.asPlugin(this.settings);
 
   bool isPrimary(AssetId id) =>
-      settings.mode == BarbackMode.RELEASE &&
+      (settings.configuration['on_release_only'] == false ||
+      settings.mode == BarbackMode.RELEASE) &&
       ['.html', '.htm'].contains(id.extension) &&
       !id.path.startsWith('lib');
 
