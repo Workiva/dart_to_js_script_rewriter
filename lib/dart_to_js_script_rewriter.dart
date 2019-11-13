@@ -21,19 +21,19 @@ class DartToJsScriptRewriter extends Transformer {
 
   Future apply(Transform transform) async {
     final htmlSource = await transform.primaryInput.readAsString();
-    Document document = new Document.html(htmlSource);
+    Document document = Document.html(htmlSource);
 
     // only apply changes to files with either a dart script (which has to be
     // rewritten), or a browser/dart.js script (which has to be removed)
     if (!document.querySelectorAll('script').any((script) =>
         scriptShouldBeRewritten(script) || scriptShouldBeRemoved(script))) {
-      return new Future.value(null);
+      return Future.value(null);
     }
     removeBrowserPackageScript(document);
     rewriteDartScriptTag(document);
 
     final id = transform.primaryInput.id;
-    transform.addOutput(new Asset.fromString(id, document.outerHtml));
+    transform.addOutput(Asset.fromString(id, document.outerHtml));
   }
 
   void removeBrowserPackageScript(Document document) {
@@ -51,7 +51,7 @@ class DartToJsScriptRewriter extends Transformer {
       final src = tag.attributes['src'];
 
       tag.attributes['src'] = src.replaceFirstMapped(
-          new RegExp(r'\.dart($|[\?#])'), (match) => '.dart.js${match[1]}');
+          RegExp(r'\.dart($|[\?#])'), (match) => '.dart.js${match[1]}');
       tag.attributes.remove('type');
     });
   }

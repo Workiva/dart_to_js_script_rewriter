@@ -13,31 +13,31 @@ import 'package:dart_to_js_script_rewriter/dart_to_js_script_rewriter.dart';
 import 'transformer_mocks.dart';
 
 main() {
-  final transformer = new DartToJsScriptRewriter.asPlugin(
-      new BarbackSettings({}, BarbackMode.RELEASE));
+  final transformer =
+      DartToJsScriptRewriter.asPlugin(BarbackSettings({}, BarbackMode.RELEASE));
 
   group('apply()', () {
     test('when run in release mode', () async {
       AssetId fakeInputFileAssetId =
-          new AssetId('testid', 'test/test_data/test_file.html');
+          AssetId('testid', 'test/test_data/test_file.html');
 
       MockAsset inputFile;
       MockTransform mockTransform;
 
       String transformedFile;
 
-      inputFile = new MockAsset();
-      mockTransform = new MockTransform();
+      inputFile = MockAsset();
+      mockTransform = MockTransform();
 
       when(inputFile.id).thenReturn(fakeInputFileAssetId);
       when(inputFile.readAsString()).thenReturn(
-          new File.fromUri(Uri.parse('test/test_data/test_file.html'))
+          File.fromUri(Uri.parse('test/test_data/test_file.html'))
               .readAsString());
 
       when(mockTransform.primaryInput).thenReturn(inputFile);
       when(mockTransform.readInputAsString(fakeInputFileAssetId))
           .thenAnswer((_) {
-        return new File.fromUri(Uri.parse('test/test_data/test_file.html'))
+        return File.fromUri(Uri.parse('test/test_data/test_file.html'))
             .readAsString();
       });
 
@@ -129,35 +129,35 @@ main() {
 
   group('isPrimary', () {
     test('do touch html files in web', () {
-      AssetId assetId = new AssetId('my_package', 'web/index.html');
+      AssetId assetId = AssetId('my_package', 'web/index.html');
       expect(transformer.isPrimary(assetId), isTrue);
     });
 
     test('do touch html files in example', () {
-      AssetId assetId = new AssetId('my_package', 'example/index.html');
+      AssetId assetId = AssetId('my_package', 'example/index.html');
       expect(transformer.isPrimary(assetId), isTrue);
     });
 
     test('do not touch html files in lib', () {
-      AssetId assetId = new AssetId('my_package', 'lib/app.component.html');
+      AssetId assetId = AssetId('my_package', 'lib/app.component.html');
       expect(transformer.isPrimary(assetId), isFalse);
     });
 
     test('don\'t touch html in DEBUG mode', () {
-      final settings = new BarbackSettings({}, BarbackMode.DEBUG);
-      final transformer = new DartToJsScriptRewriter.asPlugin(settings);
-      AssetId assetId = new AssetId('my_package', 'web/index.html');
+      final settings = BarbackSettings({}, BarbackMode.DEBUG);
+      final transformer = DartToJsScriptRewriter.asPlugin(settings);
+      AssetId assetId = AssetId('my_package', 'web/index.html');
       expect(transformer.isPrimary(assetId), isFalse);
     });
 
     test('don\'t touch dart files', () {
-      AssetId assetId = new AssetId('my_package', 'web/main.dart');
+      AssetId assetId = AssetId('my_package', 'web/main.dart');
       expect(transformer.isPrimary(assetId), isFalse);
     });
   });
 }
 
-Document documentFromScript(String script) => new Document.html('''
+Document documentFromScript(String script) => Document.html('''
 <!DOCTYPE html>
 
 <html>
