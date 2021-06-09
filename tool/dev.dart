@@ -1,3 +1,5 @@
+// @dart=2.7
+// ^ Do not remove until migrated to null safety. More info at https://wiki.atl.workiva.net/pages/viewpage.action?pageId=189370832
 library dart_to_js_script_rewriter.tool.dev;
 
 import 'package:dart_dev/dart_dev.dart' show dev, config;
